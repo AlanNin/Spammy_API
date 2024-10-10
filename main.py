@@ -1,7 +1,5 @@
-from time import time
-from fastapi import FastAPI, __version__
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 import joblib
 import os
@@ -19,7 +17,7 @@ html = f"""
     </head>
     <body>
         <div class="bg-gray-200 p-4 rounded-lg shadow-lg">
-            <h1>Hello from FastAPI@{__version__}</h1>
+            <h1>Hello from FastAPI</h1>
             <ul>
                 <li><a href="/docs">/docs</a></li>
                 <li><a href="/redoc">/redoc</a></li>
