@@ -6,6 +6,28 @@ import os
 # Inicializa la aplicación FastAPI
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+html = f"""
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FastAPI on Vercel</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+    </head>
+    <body>
+        <div class="bg-gray-200 p-4 rounded-lg shadow-lg">
+            <h1>Hello from FastAPI@{__version__}</h1>
+            <ul>
+                <li><a href="/docs">/docs</a></li>
+                <li><a href="/redoc">/redoc</a></li>
+            </ul>
+            <p>Powered by <a href="https://vercel.com" target="_blank">Vercel</a></p>
+        </div>
+    </body>
+</html>
+"""
+
 # Cargar el modelo y el vectorizador
 model_path = os.path.join(os.path.dirname(__file__), 'model', 'Modelo_Clasificacion_Spam.pkl')
 vectorizer_path = os.path.join(os.path.dirname(__file__), 'model', 'CountVectorizer_Spam.pkl')
