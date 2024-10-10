@@ -30,9 +30,13 @@ html = f"""
 </html>
 """
 
+@app.get("/")
+async def read_root():
+    return {"message": "API de Clasificación de Spam en funcionamiento"}
+
 # Cargar el modelo y el vectorizador
-model_path = os.path.join(os.path.dirname(__file__), 'model', 'Modelo_Clasificacion_Spam.pkl')
-vectorizer_path = os.path.join(os.path.dirname(__file__), 'model', 'CountVectorizer_Spam.pkl')
+model_path = os.path.join(os.getcwd(), 'model', 'Modelo_Clasificacion_Spam.pkl')
+vectorizer_path = os.path.join(os.getcwd(), 'model', 'CountVectorizer_Spam.pkl')
 model = joblib.load(model_path)
 vectorizer = joblib.load(vectorizer_path)
 
