@@ -2,6 +2,10 @@ from time import time
 from fastapi import FastAPI, __version__
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+from pydantic import BaseModel
+import joblib
+import os
+
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -26,15 +30,7 @@ html = f"""
 </html>
 """
 
-@app.get("/")
-async def root():
-    return HTMLResponse(html)
-
-@app.get('/ping')
-async def hello():
-    return {'res': 'pong', 'version': __version__, "time": time()}
-
-    # Cargar el modelo y el vectorizador
+# Cargar el modelo y el vectorizador
 model_path = os.path.join(os.path.dirname(__file__), 'model', 'Modelo_Clasificacion_Spam.pkl')
 vectorizer_path = os.path.join(os.path.dirname(__file__), 'model', 'CountVectorizer_Spam.pkl')
 model = joblib.load(model_path)
