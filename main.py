@@ -1,0 +1,39 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+import joblib
+import os
+
+# Inicializa la aplicación FastAPI
+app = FastAPI()
+
+# Cargar el modelo y el vectorizador
+model_path = os.path.join(os.path.dirname(__file__), 'model', 'Modelo_Clasificacion_Spam.pkl')
+vectorizer_path = os.path.join(os.path.dirname(__file__), 'model', 'CountVectorizer_Spam.pkl')
+model = joblib.load(model_path)
+vectorizer = joblib.load(vectorizer_path)
+
+# Define un modelo de datos para la entrada
+class Email(BaseModel):
+    email: str
+
+# Endpoint para clasificar el correo
+@app.post("/classify")
+async def classify_email(email: Email):
+    # Procesar y predecir
+    correo_vectorizado = vectorizer.transform([email.email])
+    prediccion = model.predict(correo_vectorizado)
+    probabilidad = model.predict_proba(correo_vectorizado)
+
+    # Resultado de la predicción
+    resultado = {
+        "resultado": "Spam" if prediccion[0] == 1 else "No Spam",
+        "probabilidad_spam": probabilidad[0][1],
+        "probabilidad_no_spam": probabilidad[0][0]
+    }
+
+    return resultado
+
+# Ruta raíz para verificar que el servidor está en funcionamiento
+@app.get("/")
+async def read_root():
+    return {"message": "API de Clasificación de Spam en funcionamiento"}
