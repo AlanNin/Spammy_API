@@ -63,3 +63,7 @@ async def classify_email(email: Email):
 @app.get("/")
 async def read_root():
     return {"message": "API de Clasificación de Spam en funcionamiento"}
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
