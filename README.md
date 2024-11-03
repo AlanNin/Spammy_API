@@ -2,7 +2,7 @@
 
 **Spammy API** is an API built with FastAPI that provides an AI-powered spam detection service for emails. This API uses a pre-trained machine learning model to classify emails as spam or not spam. It is designed to integrate seamlessly with applications like **Spammy**, a web app for email classification, but can be used in any service that needs spam detection capabilities.
 
-The API is deployed on **Koyeb** for high availability and performance.
+The API is deployed on **Render** for high availability and performance.
 
 ## Features
 
@@ -14,7 +14,7 @@ The API is deployed on **Koyeb** for high availability and performance.
 ### 2. **Fast and Scalable**
 
 - Built with **FastAPI**, ensuring asynchronous processing for high-speed performance.
-- Scalable deployment on **Koyeb**, handling multiple concurrent requests.
+- Scalable deployment on **Render**, handling multiple concurrent requests.
 
 ### 3. **Model Details**
 
@@ -31,7 +31,7 @@ The API is deployed on **Koyeb** for high availability and performance.
 - **API Framework**: FastAPI (Python)
 - **Machine Learning**: scikit-learn for model creation and classification
 - **Model Files**: Pickle (`.pkl`) files for model persistence
-- **Deployment**: Koyeb
+- **Deployment**: Render
 - **Data Format**: JSON for API requests and responses
 
 ## API Endpoints
@@ -87,7 +87,7 @@ A health check endpoint to verify that the API is running and available.
 The base URL for the API is:
 
 ```
-https://territorial-ariel-alan-organization-edc3cd2e.koyeb.app
+https://spammy-api.onrender.com
 ```
 
 ### 2. Example Request
@@ -95,7 +95,7 @@ https://territorial-ariel-alan-organization-edc3cd2e.koyeb.app
 Here’s how to send a request using `curl`:
 
 ```bash
-curl -X POST "https://territorial-ariel-alan-organization-edc3cd2e.koyeb.app/classify" \
+curl -X POST "https://spammy-api.onrender.com/classify" \
 -H "Content-Type: application/json" \
 -d '{"email": "Your email content here."}'
 ```
@@ -105,7 +105,7 @@ Or, using Python’s `requests` library:
 ```python
 import requests
 
-url = "https://territorial-ariel-alan-organization-edc3cd2e.koyeb.app/classify"
+url = "https://spammy-api.onrender.com/classify"
 data = {"email": "Your email content here."}
 
 response = requests.post(url, json=data)
@@ -156,12 +156,12 @@ You can test the API locally by sending POST requests to `http://127.0.0.1:8000/
 
 ## Deployment
 
-The API is deployed on **Koyeb**, providing a cloud-based solution for hosting FastAPI services. The deployment pipeline is automatically triggered on repository changes, ensuring seamless updates.
+The API is deployed on **Render**, providing a cloud-based solution for hosting FastAPI services. The deployment pipeline is automatically triggered on repository changes, ensuring seamless updates.
 
-For deploying to Koyeb, the following steps were followed:
+For deploying to Render, the following steps were followed:
 
-1. Set up the Koyeb account and connect the repository.
-2. Configure the FastAPI service for the Koyeb platform.
+1. Set up the Render account and connect the repository.
+2. Configure the FastAPI service for the Render platform.
 3. Upload model files and configure environment variables (if necessary).
 4. Deploy the service and verify using health checks.
 
