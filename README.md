@@ -46,7 +46,7 @@ This endpoint accepts email content in the request body and returns whether the 
 - **Method**: POST
 - **Content-Type**: `application/json`
 
-#### Request Body Example:
+#### Request Body Example Email Classification
 
 ```json
 {
@@ -54,7 +54,7 @@ This endpoint accepts email content in the request body and returns whether the 
 }
 ```
 
-#### Response Example:
+#### Response Example Email Classification
 
 ```json
 {
@@ -72,7 +72,7 @@ This endpoint accepts email content in the request body and returns whether the 
 
 A health check endpoint to verify that the API is running and available.
 
-#### Response Example:
+#### Response Example Health Check
 
 ```json
 {
@@ -86,7 +86,7 @@ A health check endpoint to verify that the API is running and available.
 
 The base URL for the API is:
 
-```
+```bash
 https://spammy-api.onrender.com
 ```
 
